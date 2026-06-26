@@ -60,14 +60,9 @@ function validate(f: Fields): Errors {
 
 // ── Styles ────────────────────────────────────────────────────────────────────
 
-const inputBase =
-  "h-[52px] w-full rounded-[26px] border-2 bg-white px-[22px] font-outfit text-[15px] leading-[normal] text-jungle placeholder:text-jungle/50 outline-none transition-colors";
-
 function fieldCls(hasError?: string) {
-  return `${inputBase} ${hasError ? "border-red-400 focus:border-red-400" : "border-sand focus:border-sage"}`;
+  return `input-field ${hasError ? "border-red-400 focus:border-red-400" : "border-sand focus:border-sage"}`;
 }
-
-const errCls = "font-outfit text-[12px] leading-tight text-red-500";
 
 // ── Eye icon ──────────────────────────────────────────────────────────────────
 
@@ -138,24 +133,21 @@ export default function SignUpForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="flex w-full flex-col items-start gap-[10px] px-6 sm:px-10 lg:px-0"
+      className="flex w-full flex-col items-start gap-[24px] px-6 sm:px-10 lg:px-0"
     >
 
       {/* ── Heading ── */}
       <div className="flex w-full flex-col items-start gap-[10px] leading-[normal]">
-        <h1 className="font-lora text-[38px] font-medium tracking-[-0.5px] text-jungle-dark sm:text-[46px] lg:text-[52px]">
+        <h1 className="font-lora text-heading-sm font-medium tracking-[-0.5px] text-jungle-dark sm:text-heading-md lg:text-heading-lg">
           Sign Up
         </h1>
-        <p className="font-outfit text-[15px] font-normal text-jungle/65 lg:text-[16px]">
+        <p className="font-outfit text-field font-normal text-jungle/65 lg:text-[16px]">
           Create an account to start booking your perfect stay.
         </p>
       </div>
 
-      {/* ── Personal Information ── */}
+      {/* ── Fields ── */}
       <div className="flex w-full flex-col items-start gap-[14px]">
-        <p className="font-outfit text-[15px] font-semibold leading-[normal] text-jungle-dark">
-          Personal Information
-        </p>
 
         {/* First + Last Name */}
         <div className="flex w-full flex-col gap-[14px] sm:flex-row">
@@ -236,13 +228,8 @@ export default function SignUpForm() {
             className={fieldCls(err("address"))}
           />
         </div>
-      </div>
 
-      {/* ── Password ── */}
-      <div className="flex w-full flex-col items-start gap-[14px]">
-        <p className="font-outfit text-[15px] font-semibold leading-[normal] text-jungle-dark">
-          Password
-        </p>
+        {/* Password + Confirm */}
         <div className="flex w-full flex-col gap-[14px] sm:flex-row">
           <div className="flex flex-1 min-w-0 flex-col gap-[4px]">
             <div className="relative">
@@ -296,20 +283,17 @@ export default function SignUpForm() {
             checked={fields.terms}
             onChange={e => set("terms", e.target.checked)}
             onBlur={() => touch("terms")}
-            className={`h-[22px] w-[22px] shrink-0 cursor-pointer appearance-none rounded-[7px] border-2 bg-white transition-colors checked:[background-image:url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M3%208l3.5%203.5L13%205%22%20stroke%3D%22%231f3d2b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E')] checked:bg-[length:14px_14px] checked:bg-center checked:bg-no-repeat ${err("terms") ? "border-red-400" : "border-sage"}`}
+            className={`form-checkbox ${err("terms") ? "border-red-400" : "border-sage"}`}
           />
           <label htmlFor="terms" className="flex cursor-pointer flex-wrap items-center gap-[4px] leading-[normal]">
-            <span className="font-outfit text-[14.5px] font-normal text-jungle/85">I agree to the</span>
-            <span className="font-outfit text-[14.5px] font-semibold text-jungle">Terms &amp; Conditions</span>
+            <span className="font-outfit text-meta font-normal text-jungle/85">I agree to the</span>
+            <span className="font-outfit text-meta font-semibold text-jungle">Terms &amp; Conditions</span>
           </label>
         </div>
       </div>
 
       {/* ── Create Account ── */}
-      <button
-        type="submit"
-        className="flex h-[56px] w-full cursor-pointer items-center justify-center rounded-[28px] bg-jungle-dark font-outfit text-[15px] font-semibold leading-[normal] tracking-[1.5px] text-sand-light transition-opacity hover:opacity-90"
-      >
+      <button type="submit" className="btn-primary">
         CREATE ACCOUNT
       </button>
 
@@ -317,10 +301,10 @@ export default function SignUpForm() {
       <div className="flex w-full flex-col items-center gap-[14px]">
 
         <div className="flex items-center gap-[6px] leading-[normal]">
-          <span className="font-outfit text-[14.5px] font-normal text-jungle/65">
+          <span className="font-outfit text-meta font-normal text-jungle/65">
             Already have an account?
           </span>
-          <a href="/login" className="font-outfit text-[14.5px] font-semibold text-jungle-dark hover:underline">
+          <a href="/login" className="font-outfit text-meta font-semibold text-jungle-dark hover:underline">
             Log in
           </a>
         </div>
@@ -332,13 +316,11 @@ export default function SignUpForm() {
         </div>
 
         <div className="flex items-center justify-center gap-[18px]">
-          <button type="button" aria-label="Sign up with Google"
-            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-2 border-sand bg-white transition-colors hover:border-sage">
+          <button type="button" aria-label="Sign up with Google" className="btn-social">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/google.svg" alt="" aria-hidden="true" className="h-6 w-6" />
           </button>
-          <button type="button" aria-label="Sign up with Apple"
-            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-2 border-sand bg-white transition-colors hover:border-sage">
+          <button type="button" aria-label="Sign up with Apple" className="btn-social">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/apple.svg" alt="" aria-hidden="true" className="h-6 w-6" />
           </button>

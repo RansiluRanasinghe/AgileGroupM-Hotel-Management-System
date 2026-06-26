@@ -1,8 +1,5 @@
 "use client";
 
-const selectBase =
-  "h-[52px] w-full appearance-none rounded-[26px] border-2 bg-white pl-[22px] pr-[44px] font-outfit text-[15px] leading-[normal] outline-none transition-colors";
-
 function ChevronDown() {
   // eslint-disable-next-line @next/next/no-img-element
   return (
@@ -36,13 +33,13 @@ export default function SelectField({
           value={value}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`${selectBase} ${borderCls} ${value ? "text-jungle" : "text-jungle/50"}`}
+          className={`select-field ${borderCls} ${value ? "text-jungle" : "text-jungle/50"}`}
         >
-          <option value="" disabled style={{ color: "rgba(58,90,64,0.5)" }}>
+          <option value="" disabled style={{ color: "color-mix(in srgb, var(--color-jungle) 50%, transparent)" }}>
             {placeholder}
           </option>
           {options.map(opt => (
-            <option key={opt} value={opt} style={{ color: "#3a5a40" }}>
+            <option key={opt} value={opt} style={{ color: "var(--color-jungle)" }}>
               {opt}
             </option>
           ))}

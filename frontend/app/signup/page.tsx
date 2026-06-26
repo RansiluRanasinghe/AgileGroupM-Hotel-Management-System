@@ -50,7 +50,7 @@ export default function SignUpPage() {
             <p className="text-sand-light">Disconnect from noise.</p>
             <p className="text-sage">Reconnect with nature.</p>
           </div>
-          <p className="w-[432px] font-outfit text-[15px] font-normal leading-[26px] text-sand-light/85">
+          <p className="w-[432px] font-outfit text-field font-normal leading-[26px] text-sand-light/85">
             A sustainable eco-retreat nestled in the heart of Sri Lanka&apos;s
             lush rainforests. Create your account to plan stays, curate
             experiences, and track your bookings.
@@ -64,7 +64,7 @@ export default function SignUpPage() {
               <div className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[18px] border-[0.8px] border-sage/40 bg-sage/16">
                 <CheckIcon />
               </div>
-              <p className="font-outfit text-[14.5px] font-normal leading-[normal] text-sand-light/85">
+              <p className="font-outfit text-meta font-normal leading-[normal] text-sand-light/85">
                 {fact}
               </p>
             </div>
