@@ -1,7 +1,7 @@
 "use client";
 
 const selectBase =
-  "h-[52px] w-full appearance-none rounded-[26px] border-[1.4px] bg-white pl-[22px] pr-[44px] font-outfit text-[15px] leading-[normal] outline-none transition-colors";
+  "h-[52px] w-full appearance-none rounded-[26px] border-2 bg-white pl-[22px] pr-[44px] font-outfit text-[15px] leading-[normal] outline-none transition-colors";
 
 function ChevronDown() {
   // eslint-disable-next-line @next/next/no-img-element
@@ -51,7 +51,6 @@ export default function SelectField({
           <ChevronDown />
         </div>
       </div>
-      {error && <p className="font-outfit text-[12px] leading-tight text-red-500">{error}</p>}
     </div>
   );
 }

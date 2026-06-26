@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import SignUpForm from "./SignUpForm";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Sign Up — River Nest Eco Villa",
 };
-
-function LeafIcon() {
-  // eslint-disable-next-line @next/next/no-img-element
-  return (
-    <img src="/icons/leaf.svg" alt="" aria-hidden="true" className="h-[26px] w-[26px] shrink-0" />
-  );
-}
 
 function CheckIcon() {
   // eslint-disable-next-line @next/next/no-img-element
@@ -27,20 +22,15 @@ const facts = [
 
 export default function SignUpPage() {
   return (
-    <div className="flex min-h-screen flex-col lg:h-screen lg:flex-row lg:overflow-hidden">
-
-      {/* ── Mobile top bar (hidden on desktop) ── */}
-      <div className="flex shrink-0 items-center gap-3 bg-jungle-dark px-6 py-4 lg:hidden">
-        <LeafIcon />
-        <span className="font-lora text-[20px] font-medium tracking-[0.5px] text-sand-light">
-          River Nest
-        </span>
-      </div>
+    <>
+      <Navbar />
+      <div className="pt-16">
+      <div className="flex flex-col lg:h-[calc(100vh-4rem)] lg:flex-row">
 
       {/* ══════════════════════════════════════════
           Brand Panel — desktop only, left 50%
           ══════════════════════════════════════════ */}
-      <div className="relative hidden h-full w-1/2 shrink-0 flex-col items-start justify-between overflow-hidden bg-jungle-dark p-[56px] lg:flex">
+      <div className="relative hidden h-full w-1/2 shrink-0 flex-col items-start justify-around overflow-hidden bg-jungle-dark p-[56px] lg:flex">
 
         {/* Decorative ellipse */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -50,14 +40,6 @@ export default function SignUpPage() {
           aria-hidden="true"
           className="pointer-events-none absolute left-[280px] top-[-160px] h-[420px] w-[520px] select-none"
         />
-
-        {/* Logo */}
-        <div className="relative z-10 flex shrink-0 items-center gap-[12px]">
-          <LeafIcon />
-          <span className="font-lora text-[22px] font-medium leading-[normal] tracking-[0.5px] text-sand-light">
-            River Nest
-          </span>
-        </div>
 
         {/* Tagline */}
         <div className="relative z-10 flex shrink-0 flex-col items-start gap-[20px]">
@@ -93,10 +75,13 @@ export default function SignUpPage() {
       {/* ══════════════════════════════════════════
           Form Panel — right 50% on desktop, full width on mobile
           ══════════════════════════════════════════ */}
-      <div className="flex flex-1 flex-col items-center overflow-y-auto bg-sand-light py-10 lg:h-full lg:w-1/2 lg:shrink-0 lg:justify-center lg:overflow-hidden lg:py-0">
+      <div className="flex flex-1 flex-col items-center overflow-y-auto bg-sand-light px-6 py-10 sm:px-10 lg:w-1/2 lg:shrink-0 lg:justify-center lg:overflow-hidden lg:px-14 lg:py-0">
         <SignUpForm />
       </div>
 
     </div>
+      </div>
+      <Footer />
+    </>
   );
 }

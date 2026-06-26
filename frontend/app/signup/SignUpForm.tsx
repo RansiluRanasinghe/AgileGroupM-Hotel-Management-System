@@ -61,7 +61,7 @@ function validate(f: Fields): Errors {
 // ── Styles ────────────────────────────────────────────────────────────────────
 
 const inputBase =
-  "h-[52px] w-full rounded-[26px] border-[1.4px] bg-white px-[22px] font-outfit text-[15px] leading-[normal] text-jungle placeholder:text-jungle/50 outline-none transition-colors";
+  "h-[52px] w-full rounded-[26px] border-2 bg-white px-[22px] font-outfit text-[15px] leading-[normal] text-jungle placeholder:text-jungle/50 outline-none transition-colors";
 
 function fieldCls(hasError?: string) {
   return `${inputBase} ${hasError ? "border-red-400 focus:border-red-400" : "border-sand focus:border-sage"}`;
@@ -138,7 +138,7 @@ export default function SignUpForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="flex w-full max-w-[520px] flex-col items-start gap-[20px] px-6 sm:px-10 lg:px-0"
+      className="flex w-full flex-col items-start gap-[10px] px-6 sm:px-10 lg:px-0"
     >
 
       {/* ── Heading ── */}
@@ -168,7 +168,6 @@ export default function SignUpForm() {
               onBlur={() => touch("firstName")}
               className={fieldCls(err("firstName"))}
             />
-            {err("firstName") && <p className={errCls}>{err("firstName")}</p>}
           </div>
           <div className="flex flex-1 min-w-0 flex-col gap-[4px]">
             <input
@@ -179,7 +178,6 @@ export default function SignUpForm() {
               onBlur={() => touch("lastName")}
               className={fieldCls(err("lastName"))}
             />
-            {err("lastName") && <p className={errCls}>{err("lastName")}</p>}
           </div>
         </div>
 
@@ -194,7 +192,6 @@ export default function SignUpForm() {
               onBlur={() => touch("email")}
               className={fieldCls(err("email"))}
             />
-            {err("email") && <p className={errCls}>{err("email")}</p>}
           </div>
           <div className="flex flex-1 min-w-0 flex-col gap-[4px]">
             <input
@@ -205,7 +202,6 @@ export default function SignUpForm() {
               onBlur={() => touch("phone")}
               className={fieldCls(err("phone"))}
             />
-            {err("phone") && <p className={errCls}>{err("phone")}</p>}
           </div>
         </div>
 
@@ -239,7 +235,6 @@ export default function SignUpForm() {
             onBlur={() => touch("address")}
             className={fieldCls(err("address"))}
           />
-          {err("address") && <p className={errCls}>{err("address")}</p>}
         </div>
       </div>
 
@@ -268,7 +263,6 @@ export default function SignUpForm() {
                 <EyeIcon open={showPassword} />
               </button>
             </div>
-            {err("password") && <p className={errCls}>{err("password")}</p>}
           </div>
           <div className="flex flex-1 min-w-0 flex-col gap-[4px]">
             <div className="relative">
@@ -289,7 +283,6 @@ export default function SignUpForm() {
                 <EyeIcon open={showConfirm} />
               </button>
             </div>
-            {err("confirmPassword") && <p className={errCls}>{err("confirmPassword")}</p>}
           </div>
         </div>
       </div>
@@ -301,15 +294,15 @@ export default function SignUpForm() {
             id="terms"
             type="checkbox"
             checked={fields.terms}
-            onChange={e => { set("terms", e.target.checked); touch("terms"); }}
-            className="h-[22px] w-[22px] shrink-0 cursor-pointer appearance-none rounded-[7px] border-[1.6px] border-sage bg-white transition-colors checked:[background-image:url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M3%208l3.5%203.5L13%205%22%20stroke%3D%22%231f3d2b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E')] checked:bg-[length:14px_14px] checked:bg-center checked:bg-no-repeat"
+            onChange={e => set("terms", e.target.checked)}
+            onBlur={() => touch("terms")}
+            className={`h-[22px] w-[22px] shrink-0 cursor-pointer appearance-none rounded-[7px] border-2 bg-white transition-colors checked:[background-image:url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M3%208l3.5%203.5L13%205%22%20stroke%3D%22%231f3d2b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E')] checked:bg-[length:14px_14px] checked:bg-center checked:bg-no-repeat ${err("terms") ? "border-red-400" : "border-sage"}`}
           />
           <label htmlFor="terms" className="flex cursor-pointer flex-wrap items-center gap-[4px] leading-[normal]">
             <span className="font-outfit text-[14.5px] font-normal text-jungle/85">I agree to the</span>
             <span className="font-outfit text-[14.5px] font-semibold text-jungle">Terms &amp; Conditions</span>
           </label>
         </div>
-        {err("terms") && <p className={errCls}>{err("terms")}</p>}
       </div>
 
       {/* ── Create Account ── */}
@@ -340,12 +333,12 @@ export default function SignUpForm() {
 
         <div className="flex items-center justify-center gap-[18px]">
           <button type="button" aria-label="Sign up with Google"
-            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-[1.4px] border-sand bg-white transition-colors hover:border-sage">
+            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-2 border-sand bg-white transition-colors hover:border-sage">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/google.svg" alt="" aria-hidden="true" className="h-6 w-6" />
           </button>
           <button type="button" aria-label="Sign up with Apple"
-            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-[1.4px] border-sand bg-white transition-colors hover:border-sage">
+            className="flex h-[60px] w-[60px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] border-2 border-sand bg-white transition-colors hover:border-sage">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/apple.svg" alt="" aria-hidden="true" className="h-6 w-6" />
           </button>
